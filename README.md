@@ -7,9 +7,12 @@ In order to get the DK-TM4C129X working with enet updates, three apps are involv
 2. Setup the server-side bootloader
 3. Server side app and eflash to start BOOTP process
 
-### Requirements
+### Things you'll need
 - Code Composer Studio 6.0.0 and above
-= Tivaware SK-DKok 2.1.3.156
+- Tivaware 2.1.3.156
+- `boot_emac_flash` example from Tivaware
+- `boot_demo_emac_flash` example from Tivaware
+- `blinky.bin` example blinky app from Tivaware
 
 ### 1. Get The bootloader on the device : `boot_emac_flash`
 
@@ -28,7 +31,7 @@ Then set the `BOOTP_SERVER_PORT` that you'll connect to, and the `BOOTP_CLIENT_P
 
 Also edit the `uip_.c` to also have `PORT_OFFSET` added to it
 ```c
-uip_udp_conn->rport == HTONS(40000+69)) &&
+uip_udp_conn->rport == HTONS(40000+69)) && \
 ```
 
 Then include the local copy of `uip.c` which has been modified to be used instead
