@@ -12,7 +12,7 @@ In order to get the DK-TM4C129X working with enet updates, three apps are involv
 - Tivaware 2.1.3.156
 - `boot_emac_flash` example from Tivaware
 - `boot_demo_emac_flash` example from Tivaware
-- `blinky.bin` example blinky app from Tivaware
+- `blinky.out` example blinky app from Tivaware
 
 ## 1. Get The bootloader on the device : `boot_emac_flash`
 
@@ -68,7 +68,7 @@ and set the length of the program to `0001c884` (in used column of `.map` file)
 end   = 0x00020884
 ```
 
-Then make sure that when something happens (like a button press or a magic packet comes in) that the code will initiate jumping to the bootloader with a code structure like this:
+Then make sure that when something happens (like a button press or a magic packet comes in) that the code will initiate jumping to the bootloader with a code structure like this in `boot_demo_emac_flash.c`:
 
 ```c
 SoftwareUpdateInit(SoftwareUpdateRequestCallback);
@@ -95,11 +95,11 @@ First, compile:
 ```bash
 gcc -o eflash bootp_server.c eflash.c
 ```
-Then run:
+Then you can run eflash to push blinky on to your device:
 ```
 ./eflash -i 192.168.22.109 --mac 00:1a:b6:00:00:01 -l 192.168.22.1 blinky.out --verbose
 ```
-That will initiate the `BOOTP` process which should then send the image via TFTPCheck to make sure that it is the right device name when verifying the BOOTP packet. (it can be `tiva` or `stelaris`) so :`(strcasecmp(pPacket->pcSName, "stellaris")`.
+That will initiate the `BOOTP` process by tapping up `SoftwareUpdateBegin` which should then send the image via TFTPCheck to make sure that it is the right device name when verifying the BOOTP packet. (it can be `tiva` or `stelaris`) so :`(strcasecmp(pPacket->pcSName, "stellaris")`.
 
 
 ## Future work:
