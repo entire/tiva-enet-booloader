@@ -7,16 +7,16 @@ In order to get the DK-TM4C129X working with enet updates, three apps are involv
 2. Setup the server-side bootloader
 3. Server side app and eflash to start BOOTP process
 
-### Things you'll need
+## Things you'll need
 - Code Composer Studio 6.0.0 and above
 - Tivaware 2.1.3.156
 - `boot_emac_flash` example from Tivaware
 - `boot_demo_emac_flash` example from Tivaware
 - `blinky.bin` example blinky app from Tivaware
 
-### 1. Get The bootloader on the device : `boot_emac_flash`
+## 1. Get The bootloader on the device : `boot_emac_flash`
 
-The first step is to make sure that this will be deployed at the beginning of flash. So go ahead and adapt in `bl_emac.c` the port definitions according to: https://github.com/kroesche/stellaris_eflash by @kroesche, i.e, add 40000 to all port numbers to be non-priveliged ports. Create `PORT_OFFSET` in `bl_emac.c`
+The first step is to make sure that this will be deployed at the beginning of flash. So go ahead and adapt in `bl_emac.c` the port definitions according to: https://github.com/kroesche/stellaris_eflash, i.e, add 40000 to all port numbers to be non-priveliged ports. Create `PORT_OFFSET` in `bl_emac.c`
 
 ```c
 #define PORT_OFFSET             40000 // JLK
@@ -52,11 +52,23 @@ uip_ipaddr(&addrh, 192,168,22,109);
 uip_sethostaddr(&addrh);
 ```
 
-Now double check all ports: client & server and run
+Then, debug on CCS or use a tool like `lm4flash` or Uniflash to flash the `boot_emac_flash` on to the device.
 
-### 2.The example app on the device. which jumps to the bootloader if something happens (like a button press or a magic packet comes in)
+## 2. Get The example app: `boot_demo_emac_flash` on the device.
 
-Make sure to have a code structure like this:
+`boot_demo_emac_flash` is going to help you jump to the bootloader from the app itself to prep the device to update it's firmware. The first thing to do is to set the correct address so you don't overwrite the `boot_emac_flash` that you uploadedMake sure to `#define APP_BASE 0x00004000` for the program app. so that it does not interfere with the bootloader's memory layout in flash. Also make sure that when running in CCS, check Run Debug configuration and choose erase flash only in certain range:
+
+```c
+start = 0x00004000
+```
+and set the length of the program to `0001c884` (in used column of `.map` file)
+
+```c
+//(using hex calculator): http://www.csgnetwork.com/hexaddsubcalc.html
+end   = 0x00020884
+```
+
+Then make sure that when something happens (like a button press or a magic packet comes in) that the code will initiate jumping to the bootloader with a code structure like this:
 
 ```c
 SoftwareUpdateInit(SoftwareUpdateRequestCallback);
@@ -69,24 +81,12 @@ while(!g_bFirmwareUpdate) // this will be left when the magic packet arrives.
 SoftwareUpdateBegin(g_ui32SysClock); // Transfer control to the bootloader.
 ```
 
-Make sure to `#define APP_BASE 0x00004000` for the program app. so that it does not interfere with the bootloader's memory layout in flash. Also make sure to when running in CCS. Go to Run Debug configuration, and choose erase flash only in certain range:
-
-```c
-start = 0x00004000
-```
-and set the length of the program to `0001c884` (in used column of `.map` file)
-
-```c
-//(using hex calculator): http://www.csgnetwork.com/hexaddsubcalc.html
-end   = 0x00020884
-```
-
 Finally, make sure that in `SoftwareUpdateInit` we can receive from any IP address the magic packet:  
 ```c
 udp_bind(g_psMagicPacketPCB, IP_ADDR_ANY, MPACKET_PORT);
 ```
 
-### 3 The server app "eflash" to start the BOOTP process and then send the image via TFTP
+## 3 Make a push from the server "eflash" to initiate the BOOTP process
 https://github.com/kroesche/stellaris_eflash .. for MAC
 
 Create an additional socket to `sBOOTP` in order to send the `BOOTP` reply. sBOOTP still does the `recvfrom` for the `BOOTP` request from the bootloader.
@@ -99,18 +99,17 @@ Then run:
 ```
 ./eflash -i 192.168.22.109 --mac 00:1a:b6:00:00:01 -l 192.168.22.1 blinky.out --verbose
 ```
-Check to make sure that it is the right device name when verifying the BOOTP packet. (it can be "tiva" or "stelaris"):  `(strcasecmp(pPacket->pcSName, "stellaris")`.
+That will initiate the `BOOTP` process which should then send the image via TFTPCheck to make sure that it is the right device name when verifying the BOOTP packet. (it can be `tiva` or `stelaris`) so :`(strcasecmp(pPacket->pcSName, "stellaris")`.
 
 
-### Future work:
+## Future work:
 
 - get things less hardcoded, i.e., in the bootloader figure out IP address based on bay-ids. set the server IPs, etc.
-- when going to the KP: internal/external PHY.
-(if run on LED board. in tiva lib use `PHY_USE_INTERNAL    0.`)
+- when going to the KP: internal/external PHY. (if run on LED board. in tiva lib use `PHY_USE_INTERNAL    0.`)
 - having an automated way to send enet updates to a range of IP addresses
 - get feedback if success or not
 
-### Tricks to debug:
+## Tricks to debug:
 
 - When in assembly mode, go to run debug config. load symbols only. (make sure not to terminate when loading/ or reset). ok to stop current debug session.
 - Use Wireshark (https://www.wireshark.org/)
