@@ -9,27 +9,28 @@ In order to get the DK-TM4C129X working with enet updates, three apps are involv
 - adapt in `bl_emac.c` the port definitions according to: https://github.com/kroesche/stellaris_eflash : i.e, add 40000 to all port numbers to be non-priveliged ports.
 
 set:
-```
+```c
 #define BOOTP_SERVER_PORT       (67 + PORT_OFFSET)
 #define BOOTP_CLIENT_PORT       (68 + PORT_OFFSET)
 #define TFTP_PORT               (69 + PORT_OFFSET)
 ```
 and
-```
-#include "/Users/robert/Downloads/SW-TM4C-2.1.3.156/third_party/uip-1.0/uip/uip_.c" // RP - use the local copy which has been edited
+```c
+// RP - use the local copy which has been edited
+#include "/Users/robert/Downloads/SW-TM4C-2.1.3.156/third_party/uip-1.0/uip/uip_.c"
 ```
 and
 
 edit `uip_.c` to have: `HTONS(40000+69))`
 
 
-- in bl_config.h:
-```
+- in `bl_config.h`:
+```c
 #define ENET_BOOTP_SERVER       "stellaris"
 ```
 
 - make sure to set an IP address statically in `bl_emac.c` (we have no DHCP server) :
-```
+```c
 uip_ipaddr_t addrh;
 uip_ipaddr(&addrh, 192,168,22,109);
 uip_sethostaddr(&addrh);
@@ -45,7 +46,7 @@ TODO: do this not hardocded, but based on the bay-ids as we do in KP
 
 - make sure to have a code structure like this:
 
-```
+```c
 SoftwareUpdateInit(SoftwareUpdateRequestCallback);
 
 while(!g_bFirmwareUpdate) // this will be left when the magic packet arrives.
@@ -60,7 +61,7 @@ SoftwareUpdateBegin(g_ui32SysClock); // Transfer control to the bootloader.
 
 - make sure to when running in CCS. go to Run Debug configuration. and choose erase flash only in certain range:
 
-```
+```c
 start = 0x00004000
 since the length of my program is : "0001c884" (in used column of .map file)
 end   = 0x00020884 (using hex calculator): http://www.csgnetwork.com/hexaddsubcalc.html
@@ -74,7 +75,7 @@ https://github.com/kroesche/stellaris_eflash .. for MAC
 
 - somehow I had to create an additional socket to `sBOOTP` in order to send the `BOOTP` reply. sBOOTP still does the `recvfrom` for the BOOTP request from the bootloader.
 - to compile: `gcc -o eflash bootp_server.c eflash.c`
-- to run:     ``./eflash -i 192.168.22.109 --mac 00:1a:b6:00:00:01 -l 192.168.22.1 blinky.out --verbose`
+- to run:     `./eflash -i 192.168.22.109 --mac 00:1a:b6:00:00:01 -l 192.168.22.1 blinky.out --verbose`
 - make sure to check on the right device name when verifying the BOOTP packet. (it can be "tiva" or "stelaris"):  `(strcasecmp(pPacket->pcSName, "stellaris")`
 
 
