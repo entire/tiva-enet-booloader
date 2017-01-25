@@ -63,8 +63,12 @@ SoftwareUpdateBegin(g_ui32SysClock); // Transfer control to the bootloader.
 
 ```c
 start = 0x00004000
-since the length of my program is : "0001c884" (in used column of .map file)
-end   = 0x00020884 (using hex calculator): http://www.csgnetwork.com/hexaddsubcalc.html
+```
+since the length of my program is : `0001c884` (in used column of `.map` file)
+
+```c
+//(using hex calculator): http://www.csgnetwork.com/hexaddsubcalc.html
+end   = 0x00020884
 ```
 
 - make sure that in "SoftwareUpdateInit" we can receive from any IP address the magic packet:  udp_bind(g_psMagicPacketPCB, IP_ADDR_ANY, MPACKET_PORT);
