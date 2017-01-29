@@ -1,0 +1,1162 @@
+******************************************************************************
+                  TI ARM Linker Unix v16.9.0                   
+******************************************************************************
+>> Linked Fri Jan 27 11:41:30 2017
+
+OUTPUT FILE NAME:   <boot_demo_emac_flash.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 0000b8d9
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00004000   000fc000  0000d886  000ee77a  R  X
+  SRAM                  20000000   00040000  00008e6c  00037194  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00004000    00004000    0000d888   0000d888    r-x
+  00004000    00004000    00000200   00000200    r-- .intvecs
+  00004200    00004200    00008f26   00008f26    r-x .text
+  0000d128    0000d128    00004680   00004680    r-- .const
+  000117a8    000117a8    000000e0   000000e0    r-- .cinit
+20000000    20000000    00008e6c   00000000    rw-
+  20000000    20000000    000084bc   00000000    rw- .bss
+  200084bc    200084bc    00000800   00000000    rw- .stack
+  20008cbc    20008cbc    000001b0   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00004000    00000200     
+                  00004000    00000200     startup_ccs.obj (.intvecs)
+
+.text      0    00004200    00008f26     
+                  00004200    000007c0     lwiplib.obj (.text:tcp_receive)
+                  000049c0    000004b8     pinout.obj (.text:PinoutSet)
+                  00004e78    00000484     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119Init)
+                  000052fc    000003ec     lwiplib.obj (.text:tcp_input)
+                  000056e8    000003b0     lwiplib.obj (.text:tcp_process)
+                  00005a98    00000374     grlib.lib : image.obj (.text:InternalImageDraw)
+                  00005e0c    000002f8               : image.obj (.text:PixelTransparentDraw)
+                  00006104    000002c8     lwiplib.obj (.text:tcp_slowtmr)
+                  000063cc    00000254     grlib.lib : string.obj (.text:GrFontGlyphRender)
+                  00006620    0000024d     ustdlib.obj (.text:uvsnprintf)
+                  0000686d    00000001     --HOLE-- [fill = 0]
+                  0000686e    00000002     startup_ccs.obj (.text:FaultISR)
+                  00006870    00000228     lwiplib.obj (.text:dhcp_parse_reply)
+                  00006a98    000001f8     frame.obj (.text:FrameDraw)
+                  00006c90    000001f0     lwiplib.obj (.text:ip_input)
+                  00006e80    000001f0     lwiplib.obj (.text:udp_input)
+                  00007070    000001ec     driverlib.lib : sysctl.obj (.text:SysCtlClockFreqSet)
+                  0000725c    000001cc     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119PixelDrawMultiple)
+                  00007428    000001a4     lwiplib.obj (.text:icmp_input)
+                  000075cc    00000194     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119RectFill)
+                  00007760    00000190     grlib.lib : canvas.obj (.text:CanvasPaint)
+                  000078f0    00000190     lwiplib.obj (.text:tcp_output)
+                  00007a80    00000150     lwiplib.obj (.text:etharp_arp_input)
+                  00007bd0    00000148     lwiplib.obj (.text:tcp_close_shutdown)
+                  00007d18    00000140     lwiplib.obj (.text:tivaif_receive)
+                  00007e58    00000138     boot_demo_emac_flash.obj (.text:main)
+                  00007f90    00000138     lwiplib.obj (.text:pbuf_alloc)
+                  000080c8    00000132     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
+                  000081fa    00000002     startup_ccs.obj (.text:IntDefaultHandler)
+                  000081fc    00000124     lwiplib.obj (.text:dhcp_create_msg)
+                  00008320    0000011c     lwiplib.obj (.text:etharp_output)
+                  0000843c    00000114     lwiplib.obj (.text:etharp_query)
+                  00008550    00000114     lwiplib.obj (.text:tcp_listen_input)
+                  00008664    0000010c     lwiplib.obj (.text:mem_malloc)
+                  00008770    00000104     lwiplib.obj (.text:mem_trim)
+                  00008874    00000100     lwiplib.obj (.text:tivaif_transmit)
+                  00008974    000000f0     boot_demo_emac_flash.obj (.text:SetupForEthernet)
+                  00008a64    000000f0     lwiplib.obj (.text:ip_output_if)
+                  00008b54    000000ec     lwiplib.obj (.text:udp_sendto_if)
+                  00008c40    000000e8     grlib.lib : widget.obj (.text:WidgetMessageQueueAdd)
+                  00008d28    000000e8     lwiplib.obj (.text:lwIPInit)
+                  00008e10    000000e0     lwiplib.obj (.text:etharp_find_entry)
+                  00008ef0    000000dc     lwiplib.obj (.text:etharp_raw)
+                  00008fcc    000000d8     lwiplib.obj (.text:tcp_output_segment)
+                  000090a4    000000d4     lwiplib.obj (.text:autoip_tmr)
+                  00009178    000000d0     lwiplib.obj (.text:tcp_alloc)
+                  00009248    000000cc     lwiplib.obj (.text:dhcp_recv)
+                  00009314    000000cc     lwiplib.obj (.text:dhcp_select)
+                  000093e0    000000c8     lwiplib.obj (.text:dhcp_bind)
+                  000094a8    000000c4     lwiplib.obj (.text:InitDMADescriptors)
+                  0000956c    000000c0     grlib.lib : string.obj (.text:GrDefaultStringRenderer)
+                  0000962c    000000bc     lwiplib.obj (.text:dhcp_discover)
+                  000096e8    000000bc     lwiplib.obj (.text:tivaif_hwinit)
+                  000097a4    000000b8     lwiplib.obj (.text:tcp_create_segment)
+                  0000985c    000000b4     grlib.lib : widget.obj (.text:WidgetMessageSendPostOrder)
+                  00009910    000000b0     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119LineDrawH)
+                  000099c0    000000b0     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119LineDrawV)
+                  00009a70    000000ac     lwiplib.obj (.text:ethernet_input)
+                  00009b1c    000000ac     lwiplib.obj (.text:tcp_zero_window_probe)
+                  00009bc8    000000a8     lwiplib.obj (.text:dhcp_start)
+                  00009c70    000000a8     lwiplib.obj (.text:tcp_enqueue_flags)
+                  00009d18    000000a4     lwiplib.obj (.text:dhcp_release)
+                  00009dbc    000000a0     lwiplib.obj (.text:inet_chksum_pseudo)
+                  00009e5c    0000009c     lwiplib.obj (.text:lwIPServiceTimers)
+                  00009ef8    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
+                  00009f94    00000098     lwiplib.obj (.text:dhcp_reboot)
+                  0000a02c    00000092     lwiplib.obj (.text:pbuf_copy)
+                  0000a0be    00000002     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119Flush)
+                  0000a0c0    00000090     lwiplib.obj (.text:tcp_abandon)
+                  0000a150    00000090     lwiplib.obj (.text:tcp_rst)
+                  0000a1e0    00000086     grlib.lib : rectangle.obj (.text:GrRectFill)
+                  0000a266    00000002     startup_ccs.obj (.text:NmiSR)
+                  0000a268    00000084     lwiplib.obj (.text:lwIPLinkDetect)
+                  0000a2ec    00000084     lwiplib.obj (.text:tcp_timewait_input)
+                  0000a370    00000082     lwiplib.obj (.text:autoip_arp_reply)
+                  0000a3f2    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : i_div0.obj (.text)
+                  0000a3f4    00000080     lwiplib.obj (.text:dhcp_rebind)
+                  0000a474    00000080     lwiplib.obj (.text:dhcp_renew)
+                  0000a4f4    00000080     lwiplib.obj (.text:lwIPPrivateInit)
+                  0000a574    00000080     lwiplib.obj (.text:tcp_parseopt)
+                  0000a5f4    0000007c     lwiplib.obj (.text:dhcp_handle_ack)
+                  0000a670    0000007c     lwiplib.obj (.text:dhcp_timeout)
+                  0000a6ec    0000007c     lwiplib.obj (.text:tivaif_process_phy_interrupt)
+                  0000a768    0000007a     rtsv7M4_T_le_v4SPD16_eabi.lib : memset_t2.obj (.text)
+                  0000a7e2    00000002                                   : mpu_init.obj (.text)
+                  0000a7e4    00000078     driverlib.lib : emac.obj (.text:EMACInit)
+                  0000a85c    00000078     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119PixelDraw)
+                  0000a8d4    00000078     lwiplib.obj (.text:tcp_oos_insert_segment)
+                  0000a94c    00000074     lwiplib.obj (.text:etharp_update_arp_entry)
+                  0000a9c0    00000074     lwiplib.obj (.text:raw_input)
+                  0000aa34    00000070     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.obj (.text)
+                  0000aaa4    00000070     lwiplib.obj (.text:tcp_fasttmr)
+                  0000ab14    0000006c     lwiplib.obj (.text:icmp_send_response)
+                  0000ab80    0000006c     lwiplib.obj (.text:memp_init)
+                  0000abec    00000068     grlib.lib : context.obj (.text:GrContextInit)
+                  0000ac54    00000068               : string.obj (.text:GrStringWidthGet)
+                  0000acbc    00000068     driverlib.lib : interrupt.obj (.text:IntEnable)
+                  0000ad24    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  0000ad8c    00000068     lwiplib.obj (.text:dhcp_decline)
+                  0000adf4    00000068     lwiplib.obj (.text:lwip_standard_chksum)
+                  0000ae5c    00000068     lwiplib.obj (.text:netif_set_ipaddr)
+                  0000aec4    00000068     lwiplib.obj (.text:pbuf_copy_partial)
+                  0000af2c    00000068     lwiplib.obj (.text:sys_timeout)
+                  0000af94    00000068     lwiplib.obj (.text:tcp_output_alloc_header)
+                  0000affc    00000068     lwiplib.obj (.text:tcp_process_refused_data)
+                  0000b064    00000068     lwiplib.obj (.text:udp_bind)
+                  0000b0cc    00000066     grlib.lib : context.obj (.text:GrContextClipRegionSet)
+                  0000b132    00000066               : rectangle.obj (.text:GrRectDraw)
+                  0000b198    00000064     swupdate.obj (.text:SoftwareUpdateInit)
+                  0000b1fc    00000064     swupdate.obj (.text:SoftwareUpdateUDPReceive)
+                  0000b260    00000064     grlib.lib : widget.obj (.text:WidgetMessageQueueProcess)
+                  0000b2c4    00000064     lwiplib.obj (.text:mem_free)
+                  0000b328    00000064     lwiplib.obj (.text:plug_holes)
+                  0000b38c    00000062     lwiplib.obj (.text:pbuf_header)
+                  0000b3ee    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : startup.obj (.text)
+                  0000b3f0    00000060     lwiplib.obj (.text:tcp_pcb_remove)
+                  0000b450    0000005e     grlib.lib : widget.obj (.text:WidgetMessageSendPreOrder)
+                  0000b4ae    00000002     lwiplib.obj (.text:tcp_debug_print)
+                  0000b4b0    0000005c     lwiplib.obj (.text:lwIPEthernetIntHandler)
+                  0000b50c    0000005c     lwiplib.obj (.text:memp_malloc)
+                  0000b568    0000005c     lwiplib.obj (.text:tcp_keepalive)
+                  0000b5c4    0000005c     lwiplib.obj (.text:tcp_send_empty_ack)
+                  0000b620    0000005a     grlib.lib : string.obj (.text:FontWideGlyphDataGet)
+                  0000b67a    0000005a     lwiplib.obj (.text:pbuf_realloc)
+                  0000b6d4    00000058     driverlib.lib : emac.obj (.text:EMACPHYConfigSet)
+                  0000b72c    00000058     lwiplib.obj (.text:autoip_start)
+                  0000b784    00000056     lwiplib.obj (.text:tcp_rexmit)
+                  0000b7da    00000002     --HOLE-- [fill = 0]
+                  0000b7dc    00000054     lwiplib.obj (.text:autoip_create_addr)
+                  0000b830    00000054     lwiplib.obj (.text:mem_init)
+                  0000b884    00000054     lwiplib.obj (.text:netif_add)
+                  0000b8d8    00000054     rtsv7M4_T_le_v4SPD16_eabi.lib : boot.obj (.text)
+                  0000b92c    00000054                                   : exit.obj (.text)
+                  0000b980    00000052     lwiplib.obj (.text:tivaif_process_transmit)
+                  0000b9d2    00000002     --HOLE-- [fill = 0]
+                  0000b9d4    00000050     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralReset)
+                  0000ba24    00000050     lwiplib.obj (.text:sys_timeouts_init)
+                  0000ba74    0000004e     lwiplib.obj (.text:autoip_start_probing)
+                  0000bac2    0000004e     lwiplib.obj (.text:inet_chksum_pbuf)
+                  0000bb10    0000004e     lwiplib.obj (.text:pbuf_free)
+                  0000bb5e    00000002     --HOLE-- [fill = 0]
+                  0000bb60    0000004c     lwiplib.obj (.text:etharp_output_to_arp_index)
+                  0000bbac    0000004c     lwiplib.obj (.text:ip_route)
+                  0000bbf8    0000004c     rtsv7M4_T_le_v4SPD16_eabi.lib : cpy_tbl.obj (.text)
+                  0000bc44    0000004c     lwiplib.obj (.text:tivaif_interrupt)
+                  0000bc90    0000004c     lwiplib.obj (.text:udp_connect)
+                  0000bcdc    0000004c     lwiplib.obj (.text:udp_new_port)
+                  0000bd28    0000004a     grlib.lib : string.obj (.text:UpdateContextCharMapping)
+                  0000bd72    00000002     --HOLE-- [fill = 0]
+                  0000bd74    00000048     driverlib.lib : sysctl.obj (.text:_SysCtlFrequencyGet)
+                  0000bdbc    00000048     lwiplib.obj (.text:ip_output)
+                  0000be04    00000048     lwiplib.obj (.text:tcp_kill_prio)
+                  0000be4c    00000048     lwiplib.obj (.text:tcp_rexmit_fast)
+                  0000be94    00000048     lwiplib.obj (.text:tivaif_check_pbuf)
+                  0000bedc    00000046     grlib.lib : line.obj (.text:GrLineDrawH)
+                  0000bf22    00000046               : line.obj (.text:GrLineDrawV)
+                  0000bf68    00000046     lwiplib.obj (.text:tcp_send_fin)
+                  0000bfae    00000042     lwiplib.obj (.text:dhcp_network_changed)
+                  0000bff0    00000042     lwiplib.obj (.text:dhcp_option_long)
+                  0000c032    00000042     lwiplib.obj (.text:tcp_pcb_purge)
+                  0000c074    00000040     boot_demo_emac_flash.obj (.text:SetupForUART)
+                  0000c0b4    00000040     lwiplib.obj (.text:etharp_tmr)
+                  0000c0f4    00000040     rtsv7M4_T_le_v4SPD16_eabi.lib : u_divt2.obj (.text)
+                  0000c134    0000003e     lwiplib.obj (.text:netif_set_link_up)
+                  0000c172    0000003c     driverlib.lib : lcd.obj (.text:LCDIDDTimingSet)
+                  0000c1ae    00000002     --HOLE-- [fill = 0]
+                  0000c1b0    0000003c     lwiplib.obj (.text:dhcp_coarse_tmr)
+                  0000c1ec    0000003a     driverlib.lib : emac.obj (.text:EMACIntEnable)
+                  0000c226    0000003a     grlib.lib : string.obj (.text:FontGlyphDataGet)
+                  0000c260    00000038     driverlib.lib : emac.obj (.text:EMACConfigSet)
+                  0000c298    00000038                   : sysctl.obj (.text:SysCtlPeripheralReady)
+                  0000c2d0    00000038     lwiplib.obj (.text:dhcp_fine_tmr)
+                  0000c308    00000038     lwiplib.obj (.text:dhcp_handle_nak)
+                  0000c340    00000038     lwiplib.obj (.text:dhcp_stop)
+                  0000c378    00000038     lwiplib.obj (.text:tcpip_tcp_timer)
+                  0000c3b0    00000034     driverlib.lib : emac.obj (.text:EMACConfigGet)
+                  0000c3e4    00000034                   : emac.obj (.text:EMACIntClear)
+                  0000c418    00000034                   : sysctl.obj (.text:SysCtlPeripheralEnable)
+                  0000c44c    00000034     lwiplib.obj (.text:autoip_arp_probe)
+                  0000c480    00000034     lwiplib.obj (.text:memp_free)
+                  0000c4b4    00000034     lwiplib.obj (.text:tcp_kill_timewait)
+                  0000c4e8    00000034     lwiplib.obj (.text:tcp_timer_needed)
+                  0000c51c    00000034     lwiplib.obj (.text:tivaif_init)
+                  0000c550    00000032     lwiplib.obj (.text:ip4_addr_isbroadcast)
+                  0000c582    00000032     lwiplib.obj (.text:tcp_recved)
+                  0000c5b4    00000030     lwiplib.obj (.text:dhcp_option_trailer)
+                  0000c5e4    00000030     lwiplib.obj (.text:tcp_update_rcv_ann_wnd)
+                  0000c614    00000030     lwiplib.obj (.text:udp_remove)
+                  0000c644    0000002e     grlib.lib : string.obj (.text:GrStringNextCharGet)
+                  0000c672    0000002e     lwiplib.obj (.text:tcp_rexmit_rto)
+                  0000c6a0    0000002c     driverlib.lib : emac.obj (.text:EMACIntStatus)
+                  0000c6cc    0000002c     grlib.lib : string.obj (.text:GrFontBaselineGet)
+                  0000c6f8    0000002c               : string.obj (.text:GrFontHeightGet)
+                  0000c724    0000002c     boot_demo_emac_flash.obj (.text:SetupForUSB)
+                  0000c750    0000002c     grlib.lib : widget.obj (.text:WidgetIsInTree)
+                  0000c77c    0000002c     lwiplib.obj (.text:autoip_arp_announce)
+                  0000c7a8    0000002c     lwiplib.obj (.text:dhcp_handle_offer)
+                  0000c7d4    0000002c     lwiplib.obj (.text:etharp_request)
+                  0000c800    0000002a     driverlib.lib : gpio.obj (.text:GPIODirModeSet)
+                  0000c82a    0000002a     lwiplib.obj (.text:autoip_bind)
+                  0000c854    0000002a     lwiplib.obj (.text:pbuf_cat)
+                  0000c87e    0000002a     ustdlib.obj (.text:ustrncpy)
+                  0000c8a8    00000028     swupdate.obj (.text:SoftwareUpdateBegin)
+                  0000c8d0    00000028     lwiplib.obj (.text:etharp_cleanup_netif)
+                  0000c8f8    00000026     driverlib.lib : emac.obj (.text:EMACPHYRead)
+                  0000c91e    00000026                   : emac.obj (.text:EMACPHYWrite)
+                  0000c944    00000026     grlib.lib : string.obj (.text:GrFontInfoGet)
+                  0000c96a    00000026     lwiplib.obj (.text:dhcp_check)
+                  0000c990    00000026     lwiplib.obj (.text:tcp_recv_null)
+                  0000c9b6    00000002     --HOLE-- [fill = 0]
+                  0000c9b8    00000024     lwiplib.obj (.text:etharp_free_entry)
+                  0000c9dc    00000024     lwiplib.obj (.text:netif_set_up)
+                  0000ca00    00000024     rtsv7M4_T_le_v4SPD16_eabi.lib : memcmp.obj (.text)
+                  0000ca24    00000024     lwiplib.obj (.text:tcp_pcbs_sane)
+                  0000ca48    00000024     lwiplib.obj (.text:tcp_seg_copy)
+                  0000ca6c    00000022     grlib.lib : string.obj (.text:GrFontGlyphDataGet)
+                  0000ca8e    00000022     driverlib.lib : lcd.obj (.text:LCDModeSet)
+                  0000cab0    00000022     lwiplib.obj (.text:dhcp_option_short)
+                  0000cad2    00000002     --HOLE-- [fill = 0]
+                  0000cad4    00000020     driverlib.lib : sysctl.obj (.text:_SysCtlMemTimingGet)
+                  0000caf4    00000020     lwiplib.obj (.text:autoip_handle_arp_conflict)
+                  0000cb14    00000020     lwiplib.obj (.text:dhcp_option)
+                  0000cb34    00000020     lwiplib.obj (.text:etharp_send_ip)
+                  0000cb54    00000020     lwiplib.obj (.text:lwIPTimer)
+                  0000cb74    00000020     lwiplib.obj (.text:tcp_eff_send_mss)
+                  0000cb94    00000020     lwiplib.obj (.text:tcp_tmr)
+                  0000cbb4    00000020     ustdlib.obj (.text:usprintf)
+                  0000cbd4    0000001e     driverlib.lib : emac.obj (.text:EMACAddrGet)
+                  0000cbf2    0000001e     grlib.lib : string.obj (.text:GrFontCodepageGet)
+                  0000cc10    0000001e               : widget.obj (.text:WidgetAdd)
+                  0000cc2e    0000001e     lwiplib.obj (.text:netif_set_down)
+                  0000cc4c    0000001c     lwiplib.obj (.text:lwIPLocalIPAddrGet)
+                  0000cc68    0000001c     lwiplib.obj (.text:netif_set_addr)
+                  0000cc84    0000001c     lwiplib.obj (.text:udp_new)
+                  0000cca0    0000001a     lwiplib.obj (.text:autoip_network_changed)
+                  0000ccba    0000001a     lwiplib.obj (.text:dhcp_arp_reply)
+                  0000ccd4    0000001a     lwiplib.obj (.text:lwip_htonl)
+                  0000ccee    0000001a     ustdlib.obj (.text:usnprintf)
+                  0000cd08    00000018     lwiplib.obj (.text:arp_timer)
+                  0000cd20    00000018     lwiplib.obj (.text:autoip_timer)
+                  0000cd38    00000018     lwiplib.obj (.text:dhcp_timer_coarse)
+                  0000cd50    00000018     lwiplib.obj (.text:dhcp_timer_fine)
+                  0000cd68    00000018     lwiplib.obj (.text:pbuf_pool_is_empty)
+                  0000cd80    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
+                  0000cd98    00000018     lwiplib.obj (.text:tcp_next_iss)
+                  0000cdb0    00000018     lwiplib.obj (.text:tcp_seg_free)
+                  0000cdc8    00000016     driverlib.lib : emac.obj (.text:EMACReset)
+                  0000cdde    00000016                   : emac.obj (.text:EMACRxEnable)
+                  0000cdf4    00000016                   : emac.obj (.text:EMACTxEnable)
+                  0000ce0a    00000016     grlib.lib : string.obj (.text:GrStringDraw)
+                  0000ce20    00000016     kentec320x240x16_ssd2119.obj (.text:Kentec320x240x16_SSD2119ColorTranslate)
+                  0000ce36    00000016     lwiplib.obj (.text:dhcp_delete_msg)
+                  0000ce4c    00000016     lwiplib.obj (.text:dhcp_t1_timeout)
+                  0000ce62    00000016     lwiplib.obj (.text:dhcp_t2_timeout)
+                  0000ce78    00000016     lwiplib.obj (.text:pbuf_ref)
+                  0000ce8e    00000014     grlib.lib : canvas.obj (.text:CanvasMsgProc)
+                  0000cea2    00000002     --HOLE-- [fill = 0]
+                  0000cea4    00000014     driverlib.lib : flash.obj (.text:FlashUserGet)
+                  0000ceb8    00000014                   : systick.obj (.text:SysTickDisable)
+                  0000cecc    00000014                   : systick.obj (.text:SysTickIntDisable)
+                  0000cee0    00000014     grlib.lib : widget.obj (.text:WidgetMutexGet)
+                  0000cef4    00000014     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.text)
+                  0000cf08    00000014     lwiplib.obj (.text:sys_arch_unprotect)
+                  0000cf1c    00000014     lwiplib.obj (.text:tcp_close)
+                  0000cf30    00000012     driverlib.lib : gpio.obj (.text:GPIOPinTypeEthernetLED)
+                  0000cf42    00000012                   : gpio.obj (.text:GPIOPinTypeLCD)
+                  0000cf54    00000012     lwiplib.obj (.text:dhcp_option_byte)
+                  0000cf66    00000012     lwiplib.obj (.text:netif_set_link_down)
+                  0000cf78    00000012     lwiplib.obj (.text:pbuf_clen)
+                  0000cf8a    00000012     lwiplib.obj (.text:tcp_segs_free)
+                  0000cf9c    00000010     driverlib.lib : emac.obj (.text:EMACFrameFilterSet)
+                  0000cfac    00000010                   : interrupt.obj (.text:IntMasterEnable)
+                  0000cfbc    00000010     lwiplib.obj (.text:autoip_stop)
+                  0000cfcc    00000010     lwiplib.obj (.text:dhcp_set_state)
+                  0000cfdc    00000010     lwiplib.obj (.text:inet_chksum)
+                  0000cfec    00000010     lwiplib.obj (.text:lwip_init)
+                  0000cffc    00000010     lwiplib.obj (.text:pbuf_chain)
+                  0000d00c    00000010     lwiplib.obj (.text:sys_arch_protect)
+                  0000d01c    0000000e     grlib.lib : image.obj (.text:GrImageDraw)
+                  0000d02a    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
+                  0000d038    0000000c     driverlib.lib : cpu.obj (.text:CPUcpsie)
+                  0000d044    0000000c                   : lcd.obj (.text:LCDIDDCommandWrite)
+                  0000d050    0000000c                   : lcd.obj (.text:LCDIDDDataWrite)
+                  0000d05c    0000000c     boot_demo_emac_flash.obj (.text:SoftwareUpdateRequestCallback)
+                  0000d068    0000000c     lwiplib.obj (.text:autoip_restart)
+                  0000d074    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
+                  0000d080    0000000c     lwiplib.obj (.text:lwip_htons)
+                  0000d08c    0000000c     lwiplib.obj (.text:netif_set_default)
+                  0000d098    0000000c     lwiplib.obj (.text:netif_set_gw)
+                  0000d0a4    0000000c     lwiplib.obj (.text:netif_set_netmask)
+                  0000d0b0    0000000c     lwiplib.obj (.text:sys_now)
+                  0000d0bc    00000008     driverlib.lib : emac.obj (.text:EMACTxDMAPollDemand)
+                  0000d0c4    00000008     grlib.lib : charmap.obj (.text:GrMapISO8859_1_Unicode)
+                  0000d0cc    00000008     lwiplib.obj (.text:icmp_dest_unreach)
+                  0000d0d4    00000006     driverlib.lib : emac.obj (.text:EMACRxDMADescriptorListSet)
+                  0000d0da    00000006                   : emac.obj (.text:EMACTimestampIntStatus)
+                  0000d0e0    00000006                   : emac.obj (.text:EMACTxDMADescriptorListSet)
+                  0000d0e6    00000006                   : gpio.obj (.text:GPIOPinWrite)
+                  0000d0ec    00000006     grlib.lib : string.obj (.text:GrContextFontSet)
+                  0000d0f2    00000006     startup_ccs.obj (.text:ResetISR)
+                  0000d0f8    00000006     driverlib.lib : sysctl.obj (.text:SysCtlDelay)
+                  0000d0fe    00000006     boot_demo_emac_flash.obj (.text:SysTickHandler)
+                  0000d104    00000006     grlib.lib : widget.obj (.text:WidgetMutexPut)
+                  0000d10a    00000006     lwiplib.obj (.text:tcp_abort)
+                  0000d110    00000006     lwiplib.obj (.text:udp_recv)
+                  0000d116    00000004     driverlib.lib : lcd.obj (.text:LCDDMAConfigSet)
+                  0000d11a    00000004                   : lcd.obj (.text:LCDIDDConfigSet)
+                  0000d11e    00000004     grlib.lib : widget.obj (.text:WidgetDefaultMsgProc)
+                  0000d122    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
+
+.const     0    0000d128    00004680     
+                  0000d128    00001a46     frame.obj (.const:.string:g_pui8Top)
+                  0000eb6e    0000091e     grlib.lib : fontcmss22b.obj (.const:.string:g_pui8Cmss22bData)
+                  0000f48c    00000786     frame.obj (.const:.string:g_pui8Bottom)
+                  0000fc12    00000782     grlib.lib : fontcmss18b.obj (.const:.string:g_pui8Cmss18bData)
+                  00010394    00000546     frame.obj (.const:.string:g_pui8Left)
+                  000108da    00000546     frame.obj (.const:.string:g_pui8Right)
+                  00010e20    000001b0     driverlib.lib : sysctl.obj (.const:g_pppui32XTALtoVCO)
+                  00010fd0    0000017c     frame.obj (.const:.string:g_pui8TopLeft)
+                  0001114c    00000173     frame.obj (.const:.string:g_pui8TopRight)
+                  000112bf    000000d0     frame.obj (.const:.string:g_pui8BottomLeft)
+                  0001138f    00000001     --HOLE-- [fill = 0]
+                  00011390    000000c8     grlib.lib : fontcmss18b.obj (.const:g_sFontCmss18b)
+                  00011458    000000c8               : fontcmss22b.obj (.const:g_sFontCmss22b)
+                  00011520    000000c4     frame.obj (.const:.string:g_pui8BottomRight)
+                  000115e4    00000070     driverlib.lib : interrupt.obj (.const)
+                  00011654    0000006c                   : sysctl.obj (.const:g_pui32Xtals)
+                  000116c0    00000030                   : sysctl.obj (.const:g_sXTALtoMEMTIM)
+                  000116f0    00000028     kentec320x240x16_ssd2119.obj (.const:g_sKentec320x240x16_SSD2119)
+                  00011718    00000018     driverlib.lib : emac.obj (.const)
+                  00011730    00000014     boot_demo_emac_flash.obj (.const:.string)
+                  00011744    00000010     grlib.lib : context.obj (.const)
+                  00011754    00000010     lwiplib.obj (.const:memp_num)
+                  00011764    00000010     lwiplib.obj (.const:memp_sizes)
+                  00011774    0000000d     lwiplib.obj (.const:.string:tcp_backoff)
+                  00011781    00000003     --HOLE-- [fill = 0]
+                  00011784    00000008     driverlib.lib : sysctl.obj (.const)
+                  0001178c    00000007     lwiplib.obj (.const:.string:tcp_persist_backoff)
+                  00011793    00000006     lwiplib.obj (.const:ethbroadcast)
+                  00011799    00000006     lwiplib.obj (.const:ethzero)
+                  0001179f    00000001     --HOLE-- [fill = 0]
+                  000117a0    00000004     lwiplib.obj (.const:ip_addr_any)
+                  000117a4    00000004     lwiplib.obj (.const:ip_addr_broadcast)
+
+.cinit     0    000117a8    000000e0     
+                  000117a8    000000bb     (.cinit..data.load) [load image, compression = lzss]
+                  00011863    00000001     --HOLE-- [fill = 0]
+                  00011864    0000000c     (__TI_handler_table)
+                  00011870    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00011878    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00004000    00000000     UNINITIALIZED
+
+.bss       0    20000000    000084bc     UNINITIALIZED
+                  20000000    00006014     (.common:ram_heap)
+                  20006014    00001e64     lwiplib.obj (.bss:memp_memory)
+                  20007e78    00000140     grlib.lib : widget.obj (.bss:g_psMQ)
+                  20007fb8    00000120     (.common:g_pTxDescriptors)
+                  200080d8    000000ea     (.common:lwip_stats)
+                  200081c2    00000001     (.common:pbuf_free_ooseq_pending)
+                  200081c3    00000001     (.common:tcp_active_pcbs_changed)
+                  200081c4    000000c8     lwiplib.obj (.bss:arp_table)
+                  2000828c    00000090     (.common:g_pRxDescriptors)
+                  2000831c    00000050     lwiplib.obj (.bss)
+                  2000836c    00000038     lwiplib.obj (.bss:g_sNetIF)
+                  200083a4    00000028     (.common:dhcp_rx_options_val)
+                  200083cc    00000020     lwiplib.obj (.bss:memp_tab)
+                  200083ec    00000020     (.common:g_pcIPAddr)
+                  2000840c    00000020     (.common:g_pcMACAddr)
+                  2000842c    00000020     (.common:g_pui8Dictionary)
+                  2000844c    00000010     lwiplib.obj (.bss:inseg)
+                  2000845c    0000000c     (.common:dhcp_rx_options_given)
+                  20008468    00000008     swupdate.obj (.bss:g_pui8MACAddr)
+                  20008470    00000004     (.common:current_header)
+                  20008474    00000004     (.common:current_iphdr_dest)
+                  20008478    00000004     (.common:current_iphdr_src)
+                  2000847c    00000004     (.common:current_netif)
+                  20008480    00000004     (.common:g_pfnTimerHandler)
+                  20008484    00000004     (.common:g_psGrLibDefaults)
+                  20008488    00000004     (.common:g_ui32AbnormalInts)
+                  2000848c    00000004     (.common:g_ui32NormalInts)
+                  20008490    00000004     (.common:g_ui32SysClock)
+                  20008494    00000004     (.common:netif_default)
+                  20008498    00000004     (.common:netif_list)
+                  2000849c    00000004     (.common:tcp_active_pcbs)
+                  200084a0    00000004     (.common:tcp_bound_pcbs)
+                  200084a4    00000004     (.common:tcp_input_pcb)
+                  200084a8    00000004     (.common:tcp_listen_pcbs)
+                  200084ac    00000004     (.common:tcp_ticks)
+                  200084b0    00000004     (.common:tcp_tmp_pcb)
+                  200084b4    00000004     (.common:tcp_tw_pcbs)
+                  200084b8    00000004     (.common:udp_pcbs)
+
+.data      0    20008cbc    000001b0     UNINITIALIZED
+                  20008cbc    00000040     boot_demo_emac_flash.obj (.data:g_sBackground)
+                  20008cfc    00000040     boot_demo_emac_flash.obj (.data:g_sIPAddr)
+                  20008d3c    00000040     boot_demo_emac_flash.obj (.data:g_sMACAddr)
+                  20008d7c    00000040     boot_demo_emac_flash.obj (.data:g_sStatus)
+                  20008dbc    00000034     lwiplib.obj (.data)
+                  20008df0    0000002d     grlib.lib : widget.obj (.data)
+                  20008e1d    00000001     boot_demo_emac_flash.obj (.data)
+                  20008e1e    00000002     --HOLE--
+                  20008e20    00000010     lwiplib.obj (.data:g_RxDescList)
+                  20008e30    00000010     lwiplib.obj (.data:g_TxDescList)
+                  20008e40    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  20008e4c    0000000c     lwiplib.obj (.data:g_StellarisIFData)
+                  20008e58    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.data:$O1$$)
+                  20008e60    00000008     swupdate.obj (.data)
+                  20008e68    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
+
+.stack     0    200084bc    00000800     UNINITIALIZED
+                  200084bc    00000800     --HOLE--
+
+MODULE SUMMARY
+
+       Module                         code    ro data   rw data
+       ------                         ----    -------   -------
+    ./
+       boot_demo_emac_flash.obj       678     20        325    
+       startup_ccs.obj                12      512       0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         690     532       325    
+                                                               
+    ./drivers/
+       frame.obj                      504     12507     0      
+       kentec320x240x16_ssd2119.obj   2516    40        0      
+       pinout.obj                     1208    0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         4228    12547     0      
+                                                               
+    ./utils/
+       lwiplib.obj                    22926   72        33644  
+       ustdlib.obj                    689     0         0      
+       swupdate.obj                   240     0         16     
+    +--+------------------------------+-------+---------+---------+
+       Total:                         23855   72        33660  
+                                                               
+    /Applications/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.obj                  156     0         0      
+       memset_t2.obj                  122     0         0      
+       autoinit.obj                   112     0         0      
+       copy_decompress_lzss.obj       104     0         0      
+       exit.obj                       84      0         12     
+       boot.obj                       84      0         0      
+       cpy_tbl.obj                    76      0         0      
+       u_divt2.obj                    64      0         0      
+       memcmp.obj                     36      0         0      
+       _lock.obj                      20      0         8      
+       args_main.obj                  24      0         0      
+       copy_decompress_none.obj       14      0         0      
+       copy_zero_init.obj             12      0         0      
+       pre_init.obj                   4       0         0      
+       stkdepth_vars.obj              0       0         4      
+       i_div0.obj                     2       0         0      
+       mpu_init.obj                   2       0         0      
+       startup.obj                    2       0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         918     0         24     
+                                                               
+    /Users/ceylon/Code/TI/SW-TM4C-2.1.3.156/driverlib/ccs/Debug/driverlib.lib
+       sysctl.obj                     790     596       0      
+       emac.obj                       684     24        0      
+       gpio.obj                       390     0         0      
+       interrupt.obj                  120     112       0      
+       lcd.obj                        126     0         0      
+       systick.obj                    40      0         0      
+       flash.obj                      20      0         0      
+       cpu.obj                        12      0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         2182    732       0      
+                                                               
+    /Users/ceylon/Code/TI/SW-TM4C-2.1.3.156/grlib/ccs/Debug/grlib.lib
+       fontcmss22b.obj                0       2534      0      
+       fontcmss18b.obj                0       2122      0      
+       image.obj                      1658    0         32     
+       string.obj                     1378    0         0      
+       widget.obj                     710     0         365    
+       canvas.obj                     420     0         0      
+       rectangle.obj                  236     0         0      
+       context.obj                    206     16        4      
+       line.obj                       140     0         0      
+       charmap.obj                    8       0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         4756    4672      401    
+                                                               
+       Stack:                         0       0         2048   
+       Linker Generated:              0       223       0      
+    +--+------------------------------+-------+---------+---------+
+       Grand Total:                   36629   18778     36458  
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00011878 records: 2, size/record: 8, table size: 16
+	.data: load addr=000117a8, load size=000000bb bytes, run addr=20008cbc, run size=000001b0 bytes, compression=lzss
+	.bss: load addr=00011870, load size=00000008 bytes, run addr=20000000, run size=000084bc bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00011864 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                           
+-------   ----                           
+0000b92d  C$$EXIT                        
+0000d039  CPUcpsie                       
+0000ce8f  CanvasMsgProc                  
+0000cbd5  EMACAddrGet                    
+0000c3b1  EMACConfigGet                  
+0000c261  EMACConfigSet                  
+0000cf9d  EMACFrameFilterSet             
+0000a7e5  EMACInit                       
+0000c3e5  EMACIntClear                   
+0000c1ed  EMACIntEnable                  
+0000c6a1  EMACIntStatus                  
+0000b6d5  EMACPHYConfigSet               
+0000c8f9  EMACPHYRead                    
+0000c91f  EMACPHYWrite                   
+0000cdc9  EMACReset                      
+0000d0d5  EMACRxDMADescriptorListSet     
+0000cddf  EMACRxEnable                   
+0000d0db  EMACTimestampIntStatus         
+0000d0e1  EMACTxDMADescriptorListSet     
+0000d0bd  EMACTxDMAPollDemand            
+0000cdf5  EMACTxEnable                   
+0000cea5  FlashUserGet                   
+00006a99  FrameDraw                      
+0000c801  GPIODirModeSet                 
+000080c9  GPIOPadConfigSet               
+0000cf31  GPIOPinTypeEthernetLED         
+0000cf43  GPIOPinTypeLCD                 
+0000d0e7  GPIOPinWrite                   
+0000b0cd  GrContextClipRegionSet         
+0000d0ed  GrContextFontSet               
+0000abed  GrContextInit                  
+0000956d  GrDefaultStringRenderer        
+0000c6cd  GrFontBaselineGet              
+0000cbf3  GrFontCodepageGet              
+0000ca6d  GrFontGlyphDataGet             
+000063cd  GrFontGlyphRender              
+0000c6f9  GrFontHeightGet                
+0000c945  GrFontInfoGet                  
+0000d01d  GrImageDraw                    
+0000bedd  GrLineDrawH                    
+0000bf23  GrLineDrawV                    
+0000d0c5  GrMapISO8859_1_Unicode         
+0000b133  GrRectDraw                     
+0000a1e1  GrRectFill                     
+0000ce0b  GrStringDraw                   
+0000c645  GrStringNextCharGet            
+0000ac55  GrStringWidthGet               
+000094a9  InitDMADescriptors             
+0000acbd  IntEnable                      
+0000cfad  IntMasterEnable                
+00004e79  Kentec320x240x16_SSD2119Init   
+0000d117  LCDDMAConfigSet                
+0000d045  LCDIDDCommandWrite             
+0000d11b  LCDIDDConfigSet                
+0000d051  LCDIDDDataWrite                
+0000c173  LCDIDDTimingSet                
+0000ca8f  LCDModeSet                     
+000049c1  PinoutSet                      
+0000d0f3  ResetISR                       
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+00008975  SetupForEthernet               
+0000c075  SetupForUART                   
+0000c725  SetupForUSB                    
+0000c8a9  SoftwareUpdateBegin            
+0000b199  SoftwareUpdateInit             
+0000d05d  SoftwareUpdateRequestCallback  
+00007071  SysCtlClockFreqSet             
+0000d0f9  SysCtlDelay                    
+0000c419  SysCtlPeripheralEnable         
+0000c299  SysCtlPeripheralReady          
+0000b9d5  SysCtlPeripheralReset          
+0000ceb9  SysTickDisable                 
+0000d0ff  SysTickHandler                 
+0000cecd  SysTickIntDisable              
+0000cc11  WidgetAdd                      
+0000d11f  WidgetDefaultMsgProc           
+00008c41  WidgetMessageQueueAdd          
+0000b261  WidgetMessageQueueProcess      
+0000985d  WidgetMessageSendPostOrder     
+0000b451  WidgetMessageSendPreOrder      
+0000cee1  WidgetMutexGet                 
+0000d105  WidgetMutexPut                 
+20008cbc  __STACK_END                    
+00000800  __STACK_SIZE                   
+20008cbc  __STACK_TOP                    
+00011878  __TI_CINIT_Base                
+00011888  __TI_CINIT_Limit               
+00011864  __TI_Handler_Table_Base        
+00011870  __TI_Handler_Table_Limit       
+0000aa35  __TI_auto_init                 
+20008e40  __TI_cleanup_ptr               
+0000ad25  __TI_decompress_lzss           
+0000d02b  __TI_decompress_none           
+20008e44  __TI_dtors_ptr                 
+20008e48  __TI_enable_exit_profile_output
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+000117a8  __TI_static_base__             
+0000d075  __TI_zero_init                 
+0000a3f3  __aeabi_idiv0                  
+0000a769  __aeabi_memclr                 
+0000a769  __aeabi_memclr4                
+0000a769  __aeabi_memclr8                
+00009ef9  __aeabi_memcpy                 
+00009ef9  __aeabi_memcpy4                
+00009ef9  __aeabi_memcpy8                
+0000a76b  __aeabi_memset                 
+0000a76b  __aeabi_memset4                
+0000a76b  __aeabi_memset8                
+0000c0f5  __aeabi_uidiv                  
+0000c0f5  __aeabi_uidivmod               
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+0000a7e3  __mpu_init                     
+200084bc  __stack                        
+0000cd81  _args_main                     
+0000b8d9  _c_int00                       
+20008e58  _lock                          
+0000cf03  _nop                           
+0000cefb  _register_lock                 
+0000cef5  _register_unlock               
+0000b3ef  _system_post_cinit             
+0000d123  _system_pre_init               
+20008e5c  _unlock                        
+0000b931  abort                          
+0000a371  autoip_arp_reply               
+0000cca1  autoip_network_changed         
+0000b72d  autoip_start                   
+0000cfbd  autoip_stop                    
+000090a5  autoip_tmr                     
+ffffffff  binit                          
+0000bbf9  copy_in                        
+20008470  current_header                 
+20008474  current_iphdr_dest             
+20008478  current_iphdr_src              
+2000847c  current_netif                  
+0000ccbb  dhcp_arp_reply                 
+0000c1b1  dhcp_coarse_tmr                
+0000c2d1  dhcp_fine_tmr                  
+0000bfaf  dhcp_network_changed           
+00009d19  dhcp_release                   
+0000a475  dhcp_renew                     
+2000845c  dhcp_rx_options_given          
+200083a4  dhcp_rx_options_val            
+00009bc9  dhcp_start                     
+0000c341  dhcp_stop                      
+0000c8d1  etharp_cleanup_netif           
+00008321  etharp_output                  
+0000843d  etharp_query                   
+00008ef1  etharp_raw                     
+0000c7d5  etharp_request                 
+0000c0b5  etharp_tmr                     
+00011793  ethbroadcast                   
+00009a71  ethernet_input                 
+00011799  ethzero                        
+0000b939  exit                           
+20008e20  g_RxDescList                   
+20008e30  g_TxDescList                   
+2000828c  g_pRxDescriptors               
+20007fb8  g_pTxDescriptors               
+200083ec  g_pcIPAddr                     
+2000840c  g_pcMACAddr                    
+20008480  g_pfnTimerHandler              
+20008e60  g_pfnUpdateCallback            
+00004000  g_pfnVectors                   
+00011744  g_psDefaultCodePointMapTable   
+20008cbc  g_sBackground                  
+00011390  g_sFontCmss18b                 
+00011458  g_sFontCmss22b                 
+20008cfc  g_sIPAddr                      
+000116f0  g_sKentec320x240x16_SSD2119    
+20008d3c  g_sMACAddr                     
+20008df0  g_sRoot                        
+20008d7c  g_sStatus                      
+20008488  g_ui32AbnormalInts             
+20008dc0  g_ui32LocalTimer               
+2000848c  g_ui32NormalInts               
+20008490  g_ui32SysClock                 
+0000d0cd  icmp_dest_unreach              
+00007429  icmp_input                     
+0000cfdd  inet_chksum                    
+0000bac3  inet_chksum_pbuf               
+00009dbd  inet_chksum_pseudo             
+0000c551  ip4_addr_isbroadcast           
+000117a0  ip_addr_any                    
+000117a4  ip_addr_broadcast              
+00006c91  ip_input                       
+0000bdbd  ip_output                      
+00008a65  ip_output_if                   
+0000bbad  ip_route                       
+0000b4b1  lwIPEthernetIntHandler         
+00008d29  lwIPInit                       
+0000cc4d  lwIPLocalIPAddrGet             
+0000cb55  lwIPTimer                      
+0000ccd5  lwip_htonl                     
+0000d081  lwip_htons                     
+0000cfed  lwip_init                      
+0000ccd5  lwip_ntohl                     
+0000d081  lwip_ntohs                     
+200080d8  lwip_stats                     
+00007e59  main                           
+20008e68  main_func_sp                   
+0000b2c5  mem_free                       
+0000b831  mem_init                       
+00008665  mem_malloc                     
+00008771  mem_trim                       
+0000ca01  memcmp                         
+00009ef9  memcpy                         
+0000c481  memp_free                      
+0000ab81  memp_init                      
+0000b50d  memp_malloc                    
+0000a771  memset                         
+0000b885  netif_add                      
+20008494  netif_default                  
+20008498  netif_list                     
+0000cc69  netif_set_addr                 
+0000d08d  netif_set_default              
+0000cc2f  netif_set_down                 
+0000d099  netif_set_gw                   
+0000ae5d  netif_set_ipaddr               
+0000cf67  netif_set_link_down            
+0000c135  netif_set_link_up              
+0000d0a5  netif_set_netmask              
+0000c9dd  netif_set_up                   
+00007f91  pbuf_alloc                     
+0000c855  pbuf_cat                       
+0000cffd  pbuf_chain                     
+0000cf79  pbuf_clen                      
+0000a02d  pbuf_copy                      
+0000aec5  pbuf_copy_partial              
+0000bb11  pbuf_free                      
+200081c2  pbuf_free_ooseq_pending        
+0000b38d  pbuf_header                    
+0000b67b  pbuf_realloc                   
+0000ce79  pbuf_ref                       
+20000000  ram_heap                       
+0000a9c1  raw_input                      
+0000d00d  sys_arch_protect               
+0000cf09  sys_arch_unprotect             
+0000d0b1  sys_now                        
+0000af2d  sys_timeout                    
+0000ba25  sys_timeouts_init              
+0000a0c1  tcp_abandon                    
+0000d10b  tcp_abort                      
+2000849c  tcp_active_pcbs                
+200081c3  tcp_active_pcbs_changed        
+00009179  tcp_alloc                      
+00011774  tcp_backoff                    
+200084a0  tcp_bound_pcbs                 
+0000cf1d  tcp_close                      
+0000b4af  tcp_debug_print                
+0000cb75  tcp_eff_send_mss               
+00009c71  tcp_enqueue_flags              
+0000aaa5  tcp_fasttmr                    
+000052fd  tcp_input                      
+200084a4  tcp_input_pcb                  
+0000b569  tcp_keepalive                  
+200084a8  tcp_listen_pcbs                
+0000cd99  tcp_next_iss                   
+000078f1  tcp_output                     
+0000c033  tcp_pcb_purge                  
+0000b3f1  tcp_pcb_remove                 
+0000ca25  tcp_pcbs_sane                  
+0001178c  tcp_persist_backoff            
+0000affd  tcp_process_refused_data       
+0000c991  tcp_recv_null                  
+0000c583  tcp_recved                     
+0000b785  tcp_rexmit                     
+0000be4d  tcp_rexmit_fast                
+0000c673  tcp_rexmit_rto                 
+0000a151  tcp_rst                        
+0000ca49  tcp_seg_copy                   
+0000cdb1  tcp_seg_free                   
+0000cf8b  tcp_segs_free                  
+0000b5c5  tcp_send_empty_ack             
+0000bf69  tcp_send_fin                   
+00006105  tcp_slowtmr                    
+200084ac  tcp_ticks                      
+0000c4e9  tcp_timer_needed               
+200084b0  tcp_tmp_pcb                    
+0000cb95  tcp_tmr                        
+200084b4  tcp_tw_pcbs                    
+0000c5e5  tcp_update_rcv_ann_wnd         
+00009b1d  tcp_zero_window_probe          
+0000c51d  tivaif_init                    
+0000bc45  tivaif_interrupt               
+0000a6ed  tivaif_process_phy_interrupt   
+0000b065  udp_bind                       
+0000bc91  udp_connect                    
+00006e81  udp_input                      
+0000cc85  udp_new                        
+200084b8  udp_pcbs                       
+0000d111  udp_recv                       
+0000c615  udp_remove                     
+00008b55  udp_sendto_if                  
+0000ccef  usnprintf                      
+0000cbb5  usprintf                       
+0000c87f  ustrncpy                       
+00006621  uvsnprintf                     
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                           
+-------   ----                           
+00000800  __STACK_SIZE                   
+00004000  g_pfnVectors                   
+000049c1  PinoutSet                      
+00004e79  Kentec320x240x16_SSD2119Init   
+000052fd  tcp_input                      
+00006105  tcp_slowtmr                    
+000063cd  GrFontGlyphRender              
+00006621  uvsnprintf                     
+00006a99  FrameDraw                      
+00006c91  ip_input                       
+00006e81  udp_input                      
+00007071  SysCtlClockFreqSet             
+00007429  icmp_input                     
+000078f1  tcp_output                     
+00007e59  main                           
+00007f91  pbuf_alloc                     
+000080c9  GPIOPadConfigSet               
+00008321  etharp_output                  
+0000843d  etharp_query                   
+00008665  mem_malloc                     
+00008771  mem_trim                       
+00008975  SetupForEthernet               
+00008a65  ip_output_if                   
+00008b55  udp_sendto_if                  
+00008c41  WidgetMessageQueueAdd          
+00008d29  lwIPInit                       
+00008ef1  etharp_raw                     
+000090a5  autoip_tmr                     
+00009179  tcp_alloc                      
+000094a9  InitDMADescriptors             
+0000956d  GrDefaultStringRenderer        
+0000985d  WidgetMessageSendPostOrder     
+00009a71  ethernet_input                 
+00009b1d  tcp_zero_window_probe          
+00009bc9  dhcp_start                     
+00009c71  tcp_enqueue_flags              
+00009d19  dhcp_release                   
+00009dbd  inet_chksum_pseudo             
+00009ef9  __aeabi_memcpy                 
+00009ef9  __aeabi_memcpy4                
+00009ef9  __aeabi_memcpy8                
+00009ef9  memcpy                         
+0000a02d  pbuf_copy                      
+0000a0c1  tcp_abandon                    
+0000a151  tcp_rst                        
+0000a1e1  GrRectFill                     
+0000a371  autoip_arp_reply               
+0000a3f3  __aeabi_idiv0                  
+0000a475  dhcp_renew                     
+0000a6ed  tivaif_process_phy_interrupt   
+0000a769  __aeabi_memclr                 
+0000a769  __aeabi_memclr4                
+0000a769  __aeabi_memclr8                
+0000a76b  __aeabi_memset                 
+0000a76b  __aeabi_memset4                
+0000a76b  __aeabi_memset8                
+0000a771  memset                         
+0000a7e3  __mpu_init                     
+0000a7e5  EMACInit                       
+0000a9c1  raw_input                      
+0000aa35  __TI_auto_init                 
+0000aaa5  tcp_fasttmr                    
+0000ab81  memp_init                      
+0000abed  GrContextInit                  
+0000ac55  GrStringWidthGet               
+0000acbd  IntEnable                      
+0000ad25  __TI_decompress_lzss           
+0000ae5d  netif_set_ipaddr               
+0000aec5  pbuf_copy_partial              
+0000af2d  sys_timeout                    
+0000affd  tcp_process_refused_data       
+0000b065  udp_bind                       
+0000b0cd  GrContextClipRegionSet         
+0000b133  GrRectDraw                     
+0000b199  SoftwareUpdateInit             
+0000b261  WidgetMessageQueueProcess      
+0000b2c5  mem_free                       
+0000b38d  pbuf_header                    
+0000b3ef  _system_post_cinit             
+0000b3f1  tcp_pcb_remove                 
+0000b451  WidgetMessageSendPreOrder      
+0000b4af  tcp_debug_print                
+0000b4b1  lwIPEthernetIntHandler         
+0000b50d  memp_malloc                    
+0000b569  tcp_keepalive                  
+0000b5c5  tcp_send_empty_ack             
+0000b67b  pbuf_realloc                   
+0000b6d5  EMACPHYConfigSet               
+0000b72d  autoip_start                   
+0000b785  tcp_rexmit                     
+0000b831  mem_init                       
+0000b885  netif_add                      
+0000b8d9  _c_int00                       
+0000b92d  C$$EXIT                        
+0000b931  abort                          
+0000b939  exit                           
+0000b9d5  SysCtlPeripheralReset          
+0000ba25  sys_timeouts_init              
+0000bac3  inet_chksum_pbuf               
+0000bb11  pbuf_free                      
+0000bbad  ip_route                       
+0000bbf9  copy_in                        
+0000bc45  tivaif_interrupt               
+0000bc91  udp_connect                    
+0000bdbd  ip_output                      
+0000be4d  tcp_rexmit_fast                
+0000bedd  GrLineDrawH                    
+0000bf23  GrLineDrawV                    
+0000bf69  tcp_send_fin                   
+0000bfaf  dhcp_network_changed           
+0000c033  tcp_pcb_purge                  
+0000c075  SetupForUART                   
+0000c0b5  etharp_tmr                     
+0000c0f5  __aeabi_uidiv                  
+0000c0f5  __aeabi_uidivmod               
+0000c135  netif_set_link_up              
+0000c173  LCDIDDTimingSet                
+0000c1b1  dhcp_coarse_tmr                
+0000c1ed  EMACIntEnable                  
+0000c261  EMACConfigSet                  
+0000c299  SysCtlPeripheralReady          
+0000c2d1  dhcp_fine_tmr                  
+0000c341  dhcp_stop                      
+0000c3b1  EMACConfigGet                  
+0000c3e5  EMACIntClear                   
+0000c419  SysCtlPeripheralEnable         
+0000c481  memp_free                      
+0000c4e9  tcp_timer_needed               
+0000c51d  tivaif_init                    
+0000c551  ip4_addr_isbroadcast           
+0000c583  tcp_recved                     
+0000c5e5  tcp_update_rcv_ann_wnd         
+0000c615  udp_remove                     
+0000c645  GrStringNextCharGet            
+0000c673  tcp_rexmit_rto                 
+0000c6a1  EMACIntStatus                  
+0000c6cd  GrFontBaselineGet              
+0000c6f9  GrFontHeightGet                
+0000c725  SetupForUSB                    
+0000c7d5  etharp_request                 
+0000c801  GPIODirModeSet                 
+0000c855  pbuf_cat                       
+0000c87f  ustrncpy                       
+0000c8a9  SoftwareUpdateBegin            
+0000c8d1  etharp_cleanup_netif           
+0000c8f9  EMACPHYRead                    
+0000c91f  EMACPHYWrite                   
+0000c945  GrFontInfoGet                  
+0000c991  tcp_recv_null                  
+0000c9dd  netif_set_up                   
+0000ca01  memcmp                         
+0000ca25  tcp_pcbs_sane                  
+0000ca49  tcp_seg_copy                   
+0000ca6d  GrFontGlyphDataGet             
+0000ca8f  LCDModeSet                     
+0000cb55  lwIPTimer                      
+0000cb75  tcp_eff_send_mss               
+0000cb95  tcp_tmr                        
+0000cbb5  usprintf                       
+0000cbd5  EMACAddrGet                    
+0000cbf3  GrFontCodepageGet              
+0000cc11  WidgetAdd                      
+0000cc2f  netif_set_down                 
+0000cc4d  lwIPLocalIPAddrGet             
+0000cc69  netif_set_addr                 
+0000cc85  udp_new                        
+0000cca1  autoip_network_changed         
+0000ccbb  dhcp_arp_reply                 
+0000ccd5  lwip_htonl                     
+0000ccd5  lwip_ntohl                     
+0000ccef  usnprintf                      
+0000cd81  _args_main                     
+0000cd99  tcp_next_iss                   
+0000cdb1  tcp_seg_free                   
+0000cdc9  EMACReset                      
+0000cddf  EMACRxEnable                   
+0000cdf5  EMACTxEnable                   
+0000ce0b  GrStringDraw                   
+0000ce79  pbuf_ref                       
+0000ce8f  CanvasMsgProc                  
+0000cea5  FlashUserGet                   
+0000ceb9  SysTickDisable                 
+0000cecd  SysTickIntDisable              
+0000cee1  WidgetMutexGet                 
+0000cef5  _register_unlock               
+0000cefb  _register_lock                 
+0000cf03  _nop                           
+0000cf09  sys_arch_unprotect             
+0000cf1d  tcp_close                      
+0000cf31  GPIOPinTypeEthernetLED         
+0000cf43  GPIOPinTypeLCD                 
+0000cf67  netif_set_link_down            
+0000cf79  pbuf_clen                      
+0000cf8b  tcp_segs_free                  
+0000cf9d  EMACFrameFilterSet             
+0000cfad  IntMasterEnable                
+0000cfbd  autoip_stop                    
+0000cfdd  inet_chksum                    
+0000cfed  lwip_init                      
+0000cffd  pbuf_chain                     
+0000d00d  sys_arch_protect               
+0000d01d  GrImageDraw                    
+0000d02b  __TI_decompress_none           
+0000d039  CPUcpsie                       
+0000d045  LCDIDDCommandWrite             
+0000d051  LCDIDDDataWrite                
+0000d05d  SoftwareUpdateRequestCallback  
+0000d075  __TI_zero_init                 
+0000d081  lwip_htons                     
+0000d081  lwip_ntohs                     
+0000d08d  netif_set_default              
+0000d099  netif_set_gw                   
+0000d0a5  netif_set_netmask              
+0000d0b1  sys_now                        
+0000d0bd  EMACTxDMAPollDemand            
+0000d0c5  GrMapISO8859_1_Unicode         
+0000d0cd  icmp_dest_unreach              
+0000d0d5  EMACRxDMADescriptorListSet     
+0000d0db  EMACTimestampIntStatus         
+0000d0e1  EMACTxDMADescriptorListSet     
+0000d0e7  GPIOPinWrite                   
+0000d0ed  GrContextFontSet               
+0000d0f3  ResetISR                       
+0000d0f9  SysCtlDelay                    
+0000d0ff  SysTickHandler                 
+0000d105  WidgetMutexPut                 
+0000d10b  tcp_abort                      
+0000d111  udp_recv                       
+0000d117  LCDDMAConfigSet                
+0000d11b  LCDIDDConfigSet                
+0000d11f  WidgetDefaultMsgProc           
+0000d123  _system_pre_init               
+00011390  g_sFontCmss18b                 
+00011458  g_sFontCmss22b                 
+000116f0  g_sKentec320x240x16_SSD2119    
+00011744  g_psDefaultCodePointMapTable   
+00011774  tcp_backoff                    
+0001178c  tcp_persist_backoff            
+00011793  ethbroadcast                   
+00011799  ethzero                        
+000117a0  ip_addr_any                    
+000117a4  ip_addr_broadcast              
+000117a8  __TI_static_base__             
+00011864  __TI_Handler_Table_Base        
+00011870  __TI_Handler_Table_Limit       
+00011878  __TI_CINIT_Base                
+00011888  __TI_CINIT_Limit               
+20000000  ram_heap                       
+20007fb8  g_pTxDescriptors               
+200080d8  lwip_stats                     
+200081c2  pbuf_free_ooseq_pending        
+200081c3  tcp_active_pcbs_changed        
+2000828c  g_pRxDescriptors               
+200083a4  dhcp_rx_options_val            
+200083ec  g_pcIPAddr                     
+2000840c  g_pcMACAddr                    
+2000845c  dhcp_rx_options_given          
+20008470  current_header                 
+20008474  current_iphdr_dest             
+20008478  current_iphdr_src              
+2000847c  current_netif                  
+20008480  g_pfnTimerHandler              
+20008488  g_ui32AbnormalInts             
+2000848c  g_ui32NormalInts               
+20008490  g_ui32SysClock                 
+20008494  netif_default                  
+20008498  netif_list                     
+2000849c  tcp_active_pcbs                
+200084a0  tcp_bound_pcbs                 
+200084a4  tcp_input_pcb                  
+200084a8  tcp_listen_pcbs                
+200084ac  tcp_ticks                      
+200084b0  tcp_tmp_pcb                    
+200084b4  tcp_tw_pcbs                    
+200084b8  udp_pcbs                       
+200084bc  __stack                        
+20008cbc  __STACK_END                    
+20008cbc  __STACK_TOP                    
+20008cbc  g_sBackground                  
+20008cfc  g_sIPAddr                      
+20008d3c  g_sMACAddr                     
+20008d7c  g_sStatus                      
+20008dc0  g_ui32LocalTimer               
+20008df0  g_sRoot                        
+20008e20  g_RxDescList                   
+20008e30  g_TxDescList                   
+20008e40  __TI_cleanup_ptr               
+20008e44  __TI_dtors_ptr                 
+20008e48  __TI_enable_exit_profile_output
+20008e58  _lock                          
+20008e5c  _unlock                        
+20008e60  g_pfnUpdateCallback            
+20008e68  main_func_sp                   
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+ffffffff  binit                          
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+
+[301 symbols]
