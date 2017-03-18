@@ -1,6 +1,6 @@
 # TM4C129X Ethernet Bootloader
 
-In order to get the DK-TM4C129X working with enet updates, three apps are involved:
+In order to get the TM4C129X working with firmware update over ethernet, three pieces are involved:
 (some stuff is also described here: http://www.ti.com/lit/ug/spmu301d/spmu301d.pdf)
 
 1. Get the booloader on the client device
@@ -12,7 +12,7 @@ In order to get the DK-TM4C129X working with enet updates, three apps are involv
 - Tivaware 2.1.3.156
 - `boot_emac_flash` example from Tivaware
 - `boot_demo_emac_flash` example from Tivaware
-- `blinky.out` example blinky app from Tivaware
+- `blinky.bin` example blinky app from Tivaware
 
 ## 1. Get The bootloader on the device : `boot_emac_flash`
 
@@ -36,7 +36,7 @@ uip_udp_conn->rport == HTONS(40000+69)) && \
 
 Then include the local copy of `uip.c` which has been modified to be used instead
 ```c
-#include "/Users/robert/Downloads/SW-TM4C-2.1.3.156/third_party/uip-1.0/uip/uip_.c"
+#include "<Your_TivaWare_Root>/third_party/uip-1.0/uip/uip_.c"
 ```
 
 
@@ -90,7 +90,7 @@ gcc -o eflash bootp_server.c eflash.c
 ```
 Then you can run eflash to push blinky on to your device:
 ```
-./eflash -i 192.168.22.109 --mac 00:1a:b6:00:00:01 -l 192.168.22.1 blinky.out --verbose
+./eflash -i 192.168.22.109 --mac 00:1a:b6:00:00:01 -l 192.168.22.1 blinky.bin --verbose
 ```
 That will initiate the `BOOTP` process by tapping up `SoftwareUpdateBegin` which should then send the image via TFTPCheck to make sure that it is the right device name when verifying the BOOTP packet. (it can be `tiva` or `stelaris`) so :`(strcasecmp(pPacket->pcSName, "stellaris")`.
 
