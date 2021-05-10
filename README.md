@@ -108,5 +108,5 @@ That will initiate the `BOOTP` process by tapping up `SoftwareUpdateBegin` which
 - Use Wireshark (https://www.wireshark.org/)
 - Double check all ports: client & server
 - Get UniFlash (http://www.ti.com/tool/UNIFLASH)
-- Use UniFlash to check Mac addresses
+- Use UniFlash to check MAC addresses
 - Use UniFlash to check that the bootloader is correctly at beginning of flash
